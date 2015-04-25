@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MagLink_engineModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\test\sqlite2\MagLink_engine.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AckMessage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FieldName" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Segment" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Sequence" Type="integer" />
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventType" Type="varchar" MaxLength="2147483647" />
+          <Property Name="ContentOut" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Order" Type="integer" />
+        </EntityType>
+        <EntityType Name="Message_History">
+          <Key>
+            <PropertyRef Name="mhistID" />
+          </Key>
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="messageid" Type="varchar" MaxLength="2147483647" />
+          <Property Name="mhistID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatID" Type="varchar" MaxLength="2147483647" />
+          <Property Name="PatName" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Message" Type="varchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Pref">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PrefName" Type="varchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="Help" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Details" Type="varchar" MaxLength="2147483647" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Queue">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="MessageID" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Message" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Type" Type="varchar" MaxLength="2147483647" />
+          <Property Name="PatientMRN" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Sent" Type="bit" />
+          <Property Name="SentDateTime" Type="datetime" />
+          <Property Name="Garbage" Type="bit" />
+          <Property Name="Count" Type="integer" />
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Registry">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="2147483647" />
+          <Property Name="HeartBeat" Type="datetime" />
+          <Property Name="ErrorState" Type="varchar" MaxLength="2147483647" />
+          <Property Name="ErrorMessage" Type="varchar" MaxLength="2147483647" />
+          <Property Name="LastMessage" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="MagLink_engineModelStoreContainer">
+          <EntitySet Name="AckMessage" EntityType="Self.AckMessage" store:Type="Tables" />
+          <EntitySet Name="Message_History" EntityType="Self.Message_History" store:Type="Tables" />
+          <EntitySet Name="Pref" EntityType="Self.Pref" store:Type="Tables" />
+          <EntitySet Name="Queue" EntityType="Self.Queue" store:Type="Tables" />
+          <EntitySet Name="Registry" EntityType="Self.Registry" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MagLink_engineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MagLink_engineEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Prefs" EntityType="MagLink_engineModel.Pref" />
+          <EntitySet Name="Queues" EntityType="MagLink_engineModel.Queue" />
+          <EntitySet Name="Registries" EntityType="MagLink_engineModel.Registry" />
+          <EntitySet Name="AckMessages" EntityType="MagLink_engineModel.AckMessage" />
+          <EntitySet Name="Message_History" EntityType="MagLink_engineModel.Message_History" />
+        </EntityContainer>
+        <EntityType Name="Pref">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PrefName" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Help" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Details" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Queue">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="MessageID" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="PatientMRN" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Sent" Type="Boolean" />
+          <Property Name="SentDateTime" Type="DateTime" />
+          <Property Name="Garbage" Type="Boolean" />
+          <Property Name="Count" Type="Int64" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Registry">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="HeartBeat" Type="DateTime" />
+          <Property Name="ErrorState" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="LastMessage" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="AckMessage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FieldName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Segment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Sequence" Type="Int64" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventType" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="ContentOut" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Order" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Message_History">
+          <Key>
+            <PropertyRef Name="mhistID" />
+          </Key>
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+          <Property Name="messageid" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="mhistID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatID" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="PatName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MagLink_engineModelStoreContainer" CdmEntityContainer="MagLink_engineEntities">
+          <EntitySetMapping Name="Prefs">
+            <EntityTypeMapping TypeName="MagLink_engineModel.Pref">
+              <MappingFragment StoreEntitySet="Pref">
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Help" ColumnName="Help" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PrefName" ColumnName="PrefName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Queues">
+            <EntityTypeMapping TypeName="MagLink_engineModel.Queue">
+              <MappingFragment StoreEntitySet="Queue">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Garbage" ColumnName="Garbage" />
+                <ScalarProperty Name="SentDateTime" ColumnName="SentDateTime" />
+                <ScalarProperty Name="Sent" ColumnName="Sent" />
+                <ScalarProperty Name="PatientMRN" ColumnName="PatientMRN" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registries">
+            <EntityTypeMapping TypeName="MagLink_engineModel.Registry">
+              <MappingFragment StoreEntitySet="Registry">
+                <ScalarProperty Name="LastMessage" ColumnName="LastMessage" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="HeartBeat" ColumnName="HeartBeat" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AckMessages">
+            <EntityTypeMapping TypeName="MagLink_engineModel.AckMessage">
+              <MappingFragment StoreEntitySet="AckMessage">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ContentOut" ColumnName="ContentOut" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Segment" ColumnName="Segment" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message_History">
+            <EntityTypeMapping TypeName="MagLink_engineModel.Message_History">
+              <MappingFragment StoreEntitySet="Message_History">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="PatName" ColumnName="PatName" />
+                <ScalarProperty Name="PatID" ColumnName="PatID" />
+                <ScalarProperty Name="mhistID" ColumnName="mhistID" />
+                <ScalarProperty Name="messageid" ColumnName="messageid" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

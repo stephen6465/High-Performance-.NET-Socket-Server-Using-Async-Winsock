@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MagLink_engineModelStoreContainer" CdmEntityContainer="MagLink_engineEntities">
+    <EntitySetMapping Name="Prefs">
+      <EntityTypeMapping TypeName="MagLink_engineModel.Pref">
+        <MappingFragment StoreEntitySet="Pref">
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Help" ColumnName="Help" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PrefName" ColumnName="PrefName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Queues">
+      <EntityTypeMapping TypeName="MagLink_engineModel.Queue">
+        <MappingFragment StoreEntitySet="Queue">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Garbage" ColumnName="Garbage" />
+          <ScalarProperty Name="SentDateTime" ColumnName="SentDateTime" />
+          <ScalarProperty Name="Sent" ColumnName="Sent" />
+          <ScalarProperty Name="PatientMRN" ColumnName="PatientMRN" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Registries">
+      <EntityTypeMapping TypeName="MagLink_engineModel.Registry">
+        <MappingFragment StoreEntitySet="Registry">
+          <ScalarProperty Name="LastMessage" ColumnName="LastMessage" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+          <ScalarProperty Name="HeartBeat" ColumnName="HeartBeat" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AckMessages">
+      <EntityTypeMapping TypeName="MagLink_engineModel.AckMessage">
+        <MappingFragment StoreEntitySet="AckMessage">
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="ContentOut" ColumnName="ContentOut" />
+          <ScalarProperty Name="EventType" ColumnName="EventType" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="Segment" ColumnName="Segment" />
+          <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Message_History">
+      <EntityTypeMapping TypeName="MagLink_engineModel.Message_History">
+        <MappingFragment StoreEntitySet="Message_History">
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="PatName" ColumnName="PatName" />
+          <ScalarProperty Name="PatID" ColumnName="PatID" />
+          <ScalarProperty Name="mhistID" ColumnName="mhistID" />
+          <ScalarProperty Name="messageid" ColumnName="messageid" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

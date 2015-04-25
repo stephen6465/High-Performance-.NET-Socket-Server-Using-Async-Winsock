@@ -1,0 +1,125 @@
+Information - Server started successfully.
+Running on Port:3915 and IP:192.168.1.5 - Message @ 4/24/2015 3:19:50 AM
+Information - Server started successfully.
+Running on Port:3915 and IP:192.168.1.5 - Message @ 4/24/2015 5:35:46 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:36:51 PM
+Information - Shutting down - Message @ 4/24/2015 5:36:51 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:36:51 PM
+Information - Shutting down - Message @ 4/24/2015 5:36:51 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:36:56 PM
+Information - Shutting down - Message @ 4/24/2015 5:36:56 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:36:56 PM
+Information - Shutting down - Message @ 4/24/2015 5:36:56 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:37:01 PM
+Information - Shutting down - Message @ 4/24/2015 5:37:01 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:37:04 PM
+Information - Shutting down - Message @ 4/24/2015 5:37:04 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:37:04 PM
+Information - Shutting down - Message @ 4/24/2015 5:37:04 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:37:10 PM
+Information - Shutting down - Message @ 4/24/2015 5:37:10 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:37:11 PM
+Information - Shutting down - Message @ 4/24/2015 5:37:11 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:37:17 PM
+Information - Shutting down - Message @ 4/24/2015 5:37:17 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:37:32 PM
+Information - Shutting down - Message @ 4/24/2015 5:37:32 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:37:46 PM
+Information - Shutting down - Message @ 4/24/2015 5:37:46 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:37:46 PM
+Information - Shutting down - Message @ 4/24/2015 5:37:46 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:37:47 PM
+Information - Shutting down - Message @ 4/24/2015 5:37:47 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:38:02 PM
+Information - Shutting down - Message @ 4/24/2015 5:38:02 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:38:17 PM
+Information - Shutting down - Message @ 4/24/2015 5:38:17 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:38:32 PM
+Information - Shutting down - Message @ 4/24/2015 5:38:32 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:38:47 PM
+Information - Shutting down - Message @ 4/24/2015 5:38:47 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:39:02 PM
+Information - Shutting down - Message @ 4/24/2015 5:39:02 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:39:17 PM
+Information - Shutting down - Message @ 4/24/2015 5:39:17 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:39:33 PM
+Information - Shutting down - Message @ 4/24/2015 5:39:33 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:39:48 PM
+Information - Shutting down - Message @ 4/24/2015 5:39:48 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:40:03 PM
+Information - Shutting down - Message @ 4/24/2015 5:40:03 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:40:18 PM
+Information - Shutting down - Message @ 4/24/2015 5:40:18 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:40:33 PM
+Information - Shutting down - Message @ 4/24/2015 5:40:33 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:40:48 PM
+Information - Shutting down - Message @ 4/24/2015 5:40:48 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:41:03 PM
+Information - Shutting down - Message @ 4/24/2015 5:41:03 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:41:18 PM
+Information - Shutting down - Message @ 4/24/2015 5:41:18 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:41:33 PM
+Information - Shutting down - Message @ 4/24/2015 5:41:33 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:42:57 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:46:30 PM
+Information - Shutting down - Message @ 4/24/2015 5:46:30 PM
+Information - Shutting down - Message @ 4/24/2015 5:46:30 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:46:30 PM
+Information - Shutting down - Message @ 4/24/2015 5:46:30 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:46:45 PM
+Information - Shutting down - Message @ 4/24/2015 5:46:45 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:47:00 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:00 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:47:07 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:07 PM
+Object reference not set to an instance of an object. - Error accessing the registry table - Error @ 4/24/2015 5:47:23 PM
+Store update, insert, or delete statement affected an unexpected number of rows (0). Entities may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=472540 for information on understanding and handling optimistic concurrency exceptions. - Error entering data in the message history table - Error @ 4/24/2015 5:47:23 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:47:23 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:23 PM
+An error was reported while committing a database transaction but it could not be determined whether the transaction succeeded or failed on the database server. See the inner exception and http://go.microsoft.com/fwlink/?LinkId=313468 for more information. - Error saving changes - Error @ 4/24/2015 5:47:24 PM
+An error was reported while committing a database transaction but it could not be determined whether the transaction succeeded or failed on the database server. See the inner exception and http://go.microsoft.com/fwlink/?LinkId=313468 for more information. - Error saving changes - Error @ 4/24/2015 5:47:24 PM
+An error was reported while committing a database transaction but it could not be determined whether the transaction succeeded or failed on the database server. See the inner exception and http://go.microsoft.com/fwlink/?LinkId=313468 for more information. - Error saving changes - Error @ 4/24/2015 5:47:24 PM
+Object reference not set to an instance of an object. - Error accessing the registry table - Error @ 4/24/2015 5:47:24 PM
+Store update, insert, or delete statement affected an unexpected number of rows (0). Entities may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=472540 for information on understanding and handling optimistic concurrency exceptions. - Error saving changes - Error @ 4/24/2015 5:47:24 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:47:24 PM
+An error was reported while committing a database transaction but it could not be determined whether the transaction succeeded or failed on the database server. See the inner exception and http://go.microsoft.com/fwlink/?LinkId=313468 for more information. - Error saving changes - Error @ 4/24/2015 5:47:24 PM
+An error was reported while committing a database transaction but it could not be determined whether the transaction succeeded or failed on the database server. See the inner exception and http://go.microsoft.com/fwlink/?LinkId=313468 for more information. - Error saving changes - Error @ 4/24/2015 5:47:24 PM
+An error was reported while committing a database transaction but it could not be determined whether the transaction succeeded or failed on the database server. See the inner exception and http://go.microsoft.com/fwlink/?LinkId=313468 for more information. - Error saving changes - Error @ 4/24/2015 5:47:24 PM
+Object reference not set to an instance of an object. - Error accessing the registry table - Error @ 4/24/2015 5:47:24 PM
+An error was reported while committing a database transaction but it could not be determined whether the transaction succeeded or failed on the database server. See the inner exception and http://go.microsoft.com/fwlink/?LinkId=313468 for more information. - Error saving changes - Error @ 4/24/2015 5:47:25 PM
+An error was reported while committing a database transaction but it could not be determined whether the transaction succeeded or failed on the database server. See the inner exception and http://go.microsoft.com/fwlink/?LinkId=313468 for more information. - Error saving changes - Error @ 4/24/2015 5:47:25 PM
+An error occurred while executing the command definition. See the inner exception for details. - Error accessing the registry table - Error @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Object reference not set to an instance of an object. - Error accessing the registry table - Error @ 4/24/2015 5:47:25 PM
+Object reference not set to an instance of an object. - Error accessing the registry table - Error @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:47:25 PM
+Information - Shutting down - Message @ 4/24/2015 5:47:25 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:48:32 PM
+An error occurred while updating the entries. See the inner exception for details. - Error entering data in the message history table - Error @ 4/24/2015 5:50:02 PM
+Object reference not set to an instance of an object. - Error saving changes - Error @ 4/24/2015 5:50:02 PM
+An error occurred while starting a transaction on the provider connection. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:50:32 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:50:32 PM
+An error occurred while updating the entries. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:51:02 PM
+An error occurred while starting a transaction on the provider connection. See the inner exception for details. - Error saving changes - Error @ 4/24/2015 5:51:02 PM
+Information - Server started successfully.
+Running on Port:3915 and IP:192.168.1.5 - Message @ 4/24/2015 5:52:01 PM
+Information - Server started successfully.
+Running on Port:3915 and IP:192.168.1.5 - Message @ 4/24/2015 6:06:58 PM
+Information - Server started successfully.
+Running on Port:3915 and IP:192.168.1.5 - Message @ 4/24/2015 7:19:14 PM

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1f09d14474d34ec79c2ff93d2012670f" Name="Diagram1">
+        <EntityTypeShape EntityType="MagLink_engineModel.Pref" Width="1.5" PointX="3.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MagLink_engineModel.Queue" Width="1.5" PointX="1.125" PointY="3.375" />
+        <EntityTypeShape EntityType="MagLink_engineModel.Registry" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MagLink_engineModel.AckMessage" Width="1.5" PointX="6.375" PointY="3.75" />
+        <EntityTypeShape EntityType="MagLink_engineModel.Message_History" Width="1.5" PointX="3.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="AsyncSocketServer.exe" version="1.0.0.0" publicKeyToken="f4632c00d159a97c" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="AsyncSocketServer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="AsyncSocketServer.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AsyncSocketServer.exe" size="21416">
+      <assemblyIdentity name="AsyncSocketServer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>8QCoJaUf9zx/imftng2GDq3aJUI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="AsyncSocketServer.exe.config" size="4504">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>YTly3H8d8ExKudVxtE8nFcY5s+Q=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=swilson-PC\swilson" issuerKeyHash="06659ded067ec374ca8370cc9bd9080cf193f2c5" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>Gx5CDwAliOsg0wV3XyaGxAPljOM=</DigestValue></Reference></SignedInfo><SignatureValue>aiJoCmLnKLdqwnqK791muQiYUEoWqmNzDnxAY2LJUzxvds/bLztoYe1E9MiLl3rmYE8//vt2XbG43tQSVUwzoAl0mMidhMk686lTN9h5+MhsaoQFGt5t2yXStcns5G+a2n5Pb9RLOgEanWxVV7T0+IVf995KuK9ECUxbCXI2nOg=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>jpM7eQd2f/5Q7fndwNrIflet5gE05WPHk5RaqBjWDD2TGuEl8M57wGke4it2Yzs2/tPJNK65IIoC8ERVHo4s0ZfPXdnFJkDfQU4gHWT2MkXwWmGMKNfBcM5u0C4l/ARUBQYWHfP21iyZ3C4YJ6ZN3gTIAe6ReC6EPm2jx/hgosM=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="e38ce503c486265f7705d320eb8825000f421e1b" Description="" Url=""><as:assemblyIdentity name="AsyncSocketServer.exe" version="1.0.0.0" publicKeyToken="f4632c00d159a97c" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=swilson-PC\swilson</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>Tsk3cm213sCrpEXABwZFFp1xTiA=</DigestValue></Reference></SignedInfo><SignatureValue>dYtSzCzWBUuAYyDjSmbrO9BXV2xir12hFVAos9NUrWy7nRSIppK3QY4zopb7SI47j+m7gsN+DCcxjgMu0lpzuhqkCDPH+mKKOtA9xjngcqqG+hqb262ZrtApiUxyHE+vf84qgFj/Uy5T0IFlJUYr7SG7an++wbHdKulED7DQ9IE=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>jpM7eQd2f/5Q7fndwNrIflet5gE05WPHk5RaqBjWDD2TGuEl8M57wGke4it2Yzs2/tPJNK65IIoC8ERVHo4s0ZfPXdnFJkDfQU4gHWT2MkXwWmGMKNfBcM5u0C4l/ARUBQYWHfP21iyZ3C4YJ6ZN3gTIAe6ReC6EPm2jx/hgosM=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB4TCCAUqgAwIBAgIQK0TvuIW3u61DTnIosOTVKDANBgkqhkiG9w0BAQUFADAvMS0wKwYDVQQDHiQAcwB3AGkAbABzAG8AbgAtAFAAQwBcAHMAdwBpAGwAcwBvAG4wHhcNMTQxMjIzMDIyNTExWhcNMTUxMjIzMDgyNTExWjAvMS0wKwYDVQQDHiQAcwB3AGkAbABzAG8AbgAtAFAAQwBcAHMAdwBpAGwAcwBvAG4wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAI6TO3kHdn/+UO353cDayH5XreYBNOVjx5OUWqgY1gw9kxrhJfDOe8BpHuIrdmM7Nv7TyTSuuSCKAvBEVR6OLNGXz13ZxSZA30FOIB1k9jJF8FphjCjXwXDObtAuJfwEVAUGFh3z9tYsmdwuGCemTd4EyAHukXguhD5to8f4YKLDAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAfxqPYeeXKk9mpB0MLkgYGl9EoKZsk5QjZG5gpTpcp9EAqsMN28WU+bKG3UtMNiEVOrXH+iGsPgz/vC6aa9ci2QTnHNuurfLhPoj5oN75NuVL3FYXEcl7cBB3Ya6+3SFuUMEpgAqiRxL1/A59tGmrbMBGbJHRU5VdO6kGLvIi8L0=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

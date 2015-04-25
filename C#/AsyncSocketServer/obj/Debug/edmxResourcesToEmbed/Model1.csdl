@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MagLink_engineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MagLink_engineEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Prefs" EntityType="MagLink_engineModel.Pref" />
+    <EntitySet Name="Queues" EntityType="MagLink_engineModel.Queue" />
+    <EntitySet Name="Registries" EntityType="MagLink_engineModel.Registry" />
+    <EntitySet Name="AckMessages" EntityType="MagLink_engineModel.AckMessage" />
+    <EntitySet Name="Message_History" EntityType="MagLink_engineModel.Message_History" />
+  </EntityContainer>
+  <EntityType Name="Pref">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="PrefName" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int64" Nullable="false" />
+    <Property Name="Help" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="Details" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Queue">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="MessageID" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="PatientMRN" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="Sent" Type="Boolean" />
+    <Property Name="SentDateTime" Type="DateTime" />
+    <Property Name="Garbage" Type="Boolean" />
+    <Property Name="Count" Type="Int64" />
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Registry">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="HeartBeat" Type="DateTime" />
+    <Property Name="ErrorState" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorMessage" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="LastMessage" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="AckMessage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="FieldName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="Segment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="Sequence" Type="Int64" />
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventType" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="ContentOut" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="Order" Type="Int64" />
+  </EntityType>
+  <EntityType Name="Message_History">
+    <Key>
+      <PropertyRef Name="mhistID" />
+    </Key>
+    <Property Name="DateTime" Type="DateTime" Nullable="false" />
+    <Property Name="messageid" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="mhistID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatID" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="PatName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

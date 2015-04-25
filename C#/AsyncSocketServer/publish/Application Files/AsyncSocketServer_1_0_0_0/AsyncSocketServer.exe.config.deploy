@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="New_MagLink.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+            <section name="AsyncSocketServer.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+            <section name="AsyncSocketServer.SettingsFile" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <userSettings>
+        <New_MagLink.Settings>
+            <setting name="LocalIPAddress" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="LocalPort" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="RemoteIPAddress" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="RemotePort" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="NumConnections" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="OutFolderPath" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="Type" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="InFolderPath" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="BufferSize" serializeAs="String">
+                <value />
+            </setting>
+        </New_MagLink.Settings>
+        <AsyncSocketServer.Settings>
+            <setting name="LocalIPAddress" serializeAs="String">
+                <value>192.168.1.5</value>
+            </setting>
+            <setting name="LocalPort" serializeAs="String">
+                <value>3915</value>
+            </setting>
+            <setting name="RemoteIPAddress" serializeAs="String">
+                <value>192.168.1.5</value>
+            </setting>
+            <setting name="RemotePort" serializeAs="String">
+                <value>3920</value>
+            </setting>
+            <setting name="NumConnections" serializeAs="String">
+                <value>10</value>
+            </setting>
+            <setting name="OutFolderPath" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="Type" serializeAs="String">
+                <value>SERVER</value>
+            </setting>
+            <setting name="InFolderPath" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="BufferSize" serializeAs="String">
+                <value>1500</value>
+            </setting>
+        </AsyncSocketServer.Settings>
+        <AsyncSocketServer.SettingsFile>
+            <setting name="LocalIPAddress" serializeAs="String">
+                <value>0</value>
+            </setting>
+            <setting name="LocalPort" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="RemoteIPAddress" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="RemotePort" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="NumConnections" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="OutFolderPath" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="Type" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="InFolderPath" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="BufferSize" serializeAs="String">
+                <value />
+            </setting>
+        </AsyncSocketServer.SettingsFile>
+    </userSettings>
+</configuration>

@@ -1,0 +1,11 @@
+c:\users\wsmith\documents\visual studio 2012\Projects\OSS\AsyncSocketServer\AsyncSocketServer\bin\Debug\AsyncSocketServer.exe
+c:\users\wsmith\documents\visual studio 2012\Projects\OSS\AsyncSocketServer\AsyncSocketServer\bin\Debug\AsyncSocketServer.pdb
+c:\users\wsmith\documents\visual studio 2012\Projects\OSS\AsyncSocketServer\AsyncSocketServer\obj\Debug\AsyncSocketServer.exe
+c:\users\wsmith\documents\visual studio 2012\Projects\OSS\AsyncSocketServer\AsyncSocketServer\obj\Debug\AsyncSocketServer.pdb
+C:\Users\wsmith\documents\visual studio 2012\Projects\OSS\AsyncSocketServer\AsyncSocketServer\bin\Debug\AsyncSocketServer.exe.CodeAnalysisLog.xml
+C:\Users\wsmith\documents\visual studio 2012\Projects\OSS\AsyncSocketServer\AsyncSocketServer\bin\Debug\AsyncSocketServer.exe.lastcodeanalysissucceeded
+C:\Users\swilson\Documents\Visual Studio 2013\Projects\High Performance .NET Socket Server Using Async Winsock\C#\AsyncSocketServer\obj\Debug\AsyncSocketServer.exe
+C:\Users\swilson\Documents\Visual Studio 2013\Projects\High Performance .NET Socket Server Using Async Winsock\C#\AsyncSocketServer\obj\Debug\AsyncSocketServer.pdb
+C:\Users\swilson\Documents\Visual Studio 2013\Projects\High Performance .NET Socket Server Using Async Winsock\C#\AsyncSocketServer\bin\Debug\AsyncSocketServer.exe
+C:\Users\swilson\Documents\Visual Studio 2013\Projects\High Performance .NET Socket Server Using Async Winsock\C#\AsyncSocketServer\bin\Debug\AsyncSocketServer.pdb
+C:\Users\swilson\Documents\Visual Studio 2013\Projects\High Performance .NET Socket Server Using Async Winsock\C#\AsyncSocketServer\obj\Debug\AsyncSocketServer.csprojResolveAssemblyReference.cache
