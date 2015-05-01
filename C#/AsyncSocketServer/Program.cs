@@ -91,37 +91,20 @@ namespace New_MagLink
             if (Settings._instance.Type.ToUpper().Trim() == "CLIENT")
             {
                var os_client = new OSClient(_repository);
+                os_client.fileWatcherStart();
 
                bool connected = os_client.Connect(Settings._instance.RemoteIPAddress, Convert.ToInt32(Settings._instance.RemotePort));
-               if (!connected)
+               
+                if (!connected)
                {
                    ErrorHandler._ErrorHandler.LogInfo("Failed to Start Client.");
                    
-                   //Console.WriteLine(os_client.GetLastError());
-                }
+               }
                 else
                 {
                     ErrorHandler._ErrorHandler.LogInfo(string.Format("Client started successfully.\nRunning on Port:{0} and IP:{1}", Settings._instance.RemoteIPAddress, Settings._instance.RemotePort));
                     //connected = true;
                     clientstarted = true;
-                    // Watch only for changes to *.txt  or hl7 files this means multiple watchers.
-                   // String[] filters = { "*.txt", "*.hl7" };
-                   // List<FileSystemWatcher> watchers = new List<FileSystemWatcher>();
-                   ////     MyWatcher.Path = intSettings.OutFolderPath;
-                
-                   // foreach (string f in filters)
-                   // {
-                   //     FileSystemWatcher w = new FileSystemWatcher();
-                   //     w.Filter = f;
-                   //     w.Path = Settings._instance.OutFolderPath;
-                   //     w.IncludeSubdirectories = false;
-                   //     // Enable the component to begin watching for changes.
-                   //     w.EnableRaisingEvents = true;
-                        
-                   //     w.Changed += new System.IO.FileSystemEventHandler(os_client.myFileWatcher_ChangeDetecter);
-                   //     w.Created += new System.IO.FileSystemEventHandler(os_client.myFileWatcher_ChangeDetecter);
-                   //     watchers.Add(w);
-                   // }
 
                    os_client.SendMessages();
 

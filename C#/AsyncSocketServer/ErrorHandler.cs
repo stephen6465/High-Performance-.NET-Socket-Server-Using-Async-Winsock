@@ -24,12 +24,25 @@ namespace New_MagLink
 
         public void LogError(String message, OSCore core )
         {
-            this.createLogFile();
-            using (var file = new System.IO.StreamWriter(Path.Combine(path, LogFileName),true))
+            try
+            {
+                String LogFilePath = Path.Combine(path, LogFileName);
+                using (FileStream f = new FileStream(LogFilePath, FileMode.Append, FileAccess.Write))
+                {
+                    using (var file = new System.IO.StreamWriter(f))
+                    {
+
+                        file.WriteLine(String.Format("Error - {0} - Error @ {1} ", message, System.DateTime.Now));
+                    }
+                }
+            }
+            catch (Exception ex1)
             {
 
-                file.WriteLine(String.Format("Error - {0} - Error @ {1} ",  message, System.DateTime.Now));
+                this.LogInfo("Error occured accessing error txt file");
             }
+            //this.createLogFile();
+             
             var registry = _repository.GetRegistry();
 
             registry.HeartBeat = System.DateTime.Now;
@@ -38,17 +51,31 @@ namespace New_MagLink
             registry.ErrorMessage = message;
             _repository.CreateRegistry(registry);
             LogInfo("Shutting down");
-            core.Stop();
+           // core.Stop();
         }
 
         public void LogError(Exception ex, String message)
         {
-            this.createLogFile();
-            using (var file = new System.IO.StreamWriter(Path.Combine(path, LogFileName), true))
+            //this.createLogFile();
+            try
             {
-                file.WriteLine(String.Format("{0} - {1} - Error @ {2}", ex.Message, message, System.DateTime.Now));
+                String LogFilePath = Path.Combine(path, LogFileName);
+                using (FileStream f = new FileStream(LogFilePath, FileMode.Append, FileAccess.Write))
+                {
+                    using (var file = new System.IO.StreamWriter(f))
+                    {
+                        file.WriteLine(String.Format("{0} - {1} - Error @ {2}", ex.Message, message, System.DateTime.Now));
 
+                    }
+                }
             }
+            catch (Exception ex1)
+            {
+                this.LogInfo("Error occured accessing error txt file");
+        
+                
+            }
+             
 
             var registry = _repository.GetRegistry();
 
@@ -65,13 +92,26 @@ namespace New_MagLink
 
         public void LogError(Exception ex , String message, OSCore core )
         {
-            this.createLogFile();
-            using (var file = new System.IO.StreamWriter(Path.Combine(path, LogFileName), true))
+            //this.createLogFile();
+            try
             {
-                file.WriteLine(String.Format("{0} - {1} - Error @ {2}", ex.Message, message, System.DateTime.Now));
+                String LogFilePath = Path.Combine(path, LogFileName);
+                using (FileStream f = new FileStream(LogFilePath, FileMode.Append, FileAccess.Write))
+                {
+                    using (var file = new System.IO.StreamWriter(f))
+                    {
+                        file.WriteLine(String.Format("{0} - {1} - Error @ {2}", ex.Message, message, System.DateTime.Now));
 
-            }
+                    }
+                }
             
+            }
+            catch (Exception ex1)
+            {
+                this.LogInfo("Error occured accessing error txt file");
+    
+                
+            }
             var registry = _repository.GetRegistry();
 
             registry.HeartBeat = System.DateTime.Now;
@@ -80,20 +120,35 @@ namespace New_MagLink
             registry.ErrorMessage = message;
             _repository.CreateRegistry(registry);
             this.LogInfo("Shutting down");
-            core.Stop();
+           // core.Stop();
 
 
         }
 
         public void LogInfo(String message )
         {
-            this.createLogFile();
-            String LogFilePath = Path.Combine(path, LogFileName);
-            using (var file = new System.IO.StreamWriter(LogFilePath, true))
+            //this.createLogFile();
+            try
             {
-                file.WriteLine(String.Format("Information - {0} - Message @ {1}",  message, System.DateTime.Now));
+                String LogFilePath = Path.Combine(path, LogFileName);
+                using (FileStream f = new FileStream(LogFilePath, FileMode.Append, FileAccess.Write))
+                {
+
+                    using (var file = new System.IO.StreamWriter(f))
+                    {
+                        file.WriteLine(String.Format("Information - {0} - Message @ {1}", message, System.DateTime.Now));
+
+                    }
+                }
 
             }
+            catch (Exception ex)
+            {
+                
+                this.LogInfo("Error occured accessing error txt file");
+
+            }
+
             var registry = _repository.GetRegistry();
             registry.HeartBeat = System.DateTime.Now;
             
@@ -110,7 +165,7 @@ namespace New_MagLink
             String file = Path.Combine(path, LogFileName);
             if (!File.Exists(file))
             {
-                var fs = new FileStream(file, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None, 4096,FileOptions.None) ;
+                var fs = new FileStream(file, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.ReadWrite, 4096,FileOptions.None) ;
     
             }
 

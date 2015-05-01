@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Sockets;
 
@@ -18,7 +19,11 @@ namespace New_MagLink
 
             try
             {
-                return _magDb.AckMessages.ToList();
+                //using (_magDb)
+                //{
+                    _magDb = new MagLink_engineEntities();
+                    return _magDb.AckMessages.ToList();   
+                //}
             }
             catch (Exception ex)
             {
@@ -30,6 +35,7 @@ namespace New_MagLink
 
         public void Dispose()
         {
+
             _magDb.Dispose();
             
         }
@@ -41,7 +47,11 @@ namespace New_MagLink
             
             try
             {
-                return _magDb.Registries.FirstOrDefault(p => p.ID == 1);
+                //using (_magDb)
+                //{
+                    _magDb = new MagLink_engineEntities();
+                    return _magDb.Registries.FirstOrDefault(p => p.ID == 1);   
+                //}
             }
             catch (Exception ex)
             {
@@ -57,20 +67,33 @@ namespace New_MagLink
           //  _magDb.Registries.      //Add(registry);
             try
             {
-                _magDb.SaveChanges();
-
+                //using (_magDb)
+                //{
+                    _magDb = new MagLink_engineEntities();
+                    _magDb.SaveChanges();
+                //}
             }
             catch (Exception ex)
             {
-                ErrorHandler._ErrorHandler.LogError(ex, "Error saving changes");
+                ErrorHandler._ErrorHandler.LogError(ex, "Error saving changes to registry");
             }
             
         }
 
         public void SaveChanges()
         {
-            _magDb.SaveChanges();
-
+            try
+            {
+                //using (_magDb)
+                //{
+                    _magDb = new MagLink_engineEntities();
+                    _magDb.SaveChanges();
+                //}
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler._ErrorHandler.LogError(ex, "Error saving changes general call");
+            }
         }
         public void CreateMhistory(String message)
         {
@@ -83,9 +106,14 @@ namespace New_MagLink
                 history.PatID = m.getElement("PID", 3);
                 history.PatName = m.getElement("PID", 5);
                 history.messageid = m.getElement("MSH", 9);
-                _magDb.Message_History.Add(history);
-                _magDb.SaveChanges();
 
+                //using (_magDb)
+                //{
+                    _magDb = new MagLink_engineEntities();
+                    _magDb.Message_History.Add(history);
+                    _magDb.SaveChanges();
+   
+                //}
             }
             catch (Exception ex)
             {
@@ -99,13 +127,18 @@ namespace New_MagLink
         {
             try
             {
-                Queue queue = _magDb.Queues.FirstOrDefault(q => q.MessageID.ToUpper().Trim() == messageID.ToUpper().Trim() && q.Garbage == false);
+                Queue queue = _magDb.Queues.FirstOrDefault(q => q.MessageID.ToUpper().Trim() == messageID.ToUpper().Trim() && (q.Garbage == false || q.Garbage == null));
                 if (queue != null)
                 {
-                    queue.Sent = true;
-                    queue.Garbage = true;
-                    _magDb.SaveChanges();
-
+                    //using (_magDb)
+                    //{
+                        _magDb = new MagLink_engineEntities();
+                        queue.Sent = true;
+                        queue.Garbage = true;
+                        _magDb.SaveChanges();
+    
+                    //}
+                    
                 }
             }
             catch (Exception ex)
@@ -122,7 +155,14 @@ namespace New_MagLink
             IEnumerable<Queue> queues = new List<Queue>();
             try
             {
-               return _magDb.Queues.Where(q => q.Garbage == false);
+               
+
+                //using (_magDb)
+                //{
+                    //_magDb = new MagLink_engineEntities();
+                    return _magDb.Queues.Where(q => q.Garbage == false).ToList();     
+                //}
+
             }
             catch (Exception ex)
             {
@@ -147,9 +187,14 @@ namespace New_MagLink
                 queue.Garbage = false;
                 queue.Sent = false;
                 queue.PatientMRN = m.getElement("PID", 3);
-                _magDb.Queues.Add(queue);
-                _magDb.SaveChanges();
 
+                //using (_magDb)
+                //{
+                    _magDb = new MagLink_engineEntities();
+                    _magDb.Queues.Add(queue);
+                    _magDb.SaveChanges();
+   
+                //}
             }
             catch (Exception ex)
             {

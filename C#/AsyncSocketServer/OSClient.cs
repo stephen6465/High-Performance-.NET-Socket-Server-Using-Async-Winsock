@@ -8,6 +8,7 @@ using System.Threading;
 using System.IO;
 using AsyncSocketServer;
 using New_MagLink;
+using SQLite.Designer.Design;
 
 namespace New_MagLink
 {
@@ -20,16 +21,23 @@ namespace New_MagLink
         IEFMagLinkRepository _repository;
         public List<Message> MessagesOut = new List<Message>();
         static System.Timers.Timer _timerClient = new System.Timers.Timer();
+        static System.Timers.Timer _timerClientConnecTimer = new System.Timers.Timer();
+        public static bool connected; 
         SocketAsyncEventArgs item = new SocketAsyncEventArgs();
 
         public OSClient(IEFMagLinkRepository repository)
         {
+            connected = false;
             _repository = repository;
             item.Completed += new EventHandler<SocketAsyncEventArgs>(OnIOCompleted);
             item.SetBuffer(new Byte[Convert.ToInt32(Settings._instance.BufferSize)], 0, Convert.ToInt32(Settings._instance.BufferSize));
             _timerClient.Elapsed += new System.Timers.ElapsedEventHandler(_timerClient_Elapsed);
-            _timerClient.Interval = 5000;
+            _timerClient.Interval = 10000;
             _timerClient.Start();
+            _timerClientConnecTimer.Elapsed += new System.Timers.ElapsedEventHandler(_timerClientConnecTimer_Elapsed);
+            _timerClientConnecTimer.Interval = 10000;
+            _timerClientConnecTimer.Start();
+
         }
 
         // This method is used to send a message to the server
@@ -43,40 +51,41 @@ namespace New_MagLink
                 try
                 {
                     // We need a connection to the server to send a message
-                    if (connectionsocket.Connected)
+                    if (connected)
                     {
+
                         byte[] byData = System.Text.Encoding.ASCII.GetBytes(cmdstring);
-                        connectionsocket.Send(byData);
-                        // connectionsocket.Receive()
+
+                        try
+                        {
+                            connectionsocket.Send(byData);
+                        }
+                        catch (Exception ex)
+                        {
+                            ErrorHandler._ErrorHandler.LogError(ex, "Error sending", this);
+                            connected = false;
+                            Connect(Settings._instance.RemoteIPAddress, Convert.ToInt32(Settings._instance.RemotePort));
+
+                        }
+
+                        bool IOPending = connectionsocket.ReceiveAsync(item);
+                        if (!IOPending)
+                        {
+                            ProcessReceive(item);
+                        }
                         return true;
                     }
                     else
                     {
-                        try
-                        {
-
-                            this.Connect(Settings._instance.RemoteIPAddress, Convert.ToInt32(Settings._instance.RemotePort));
-
-                            if (connectionsocket.Connected)
-                            {
-                                byte[] byData = System.Text.Encoding.ASCII.GetBytes(cmdstring);
-                                connectionsocket.Send(byData);
-                                return true;
-                            }
-
-                            return false;
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorHandler._ErrorHandler.LogError(ex, "Error connecting", this);
-                            lasterror = ex.ToString();
-                            return false;
-                        }
+                        connected = false;
+                        Connect(Settings._instance.RemoteIPAddress, Convert.ToInt32(Settings._instance.RemotePort));
+                        return false;
 
                     }
                 }
                 catch (Exception ex)
                 {
+                    ErrorHandler._ErrorHandler.LogError(ex, "Error sending", this);
                     lasterror = ex.ToString();
                     return false;
                 }
@@ -114,11 +123,8 @@ namespace New_MagLink
                         // Otherwise OnIOCompleted will get called when the receive is complete
                         // We are basically calling this same method recursively until there is no more data
                         // on the read socket
-                        bool IOPending = readsocket.ReceiveAsync(readSocket);
-                        if (!IOPending)
-                        {
-                            ProcessReceive(readSocket);
-                        }
+                          ProcessReceive(readSocket);
+                        
                     }
                     else
                     {
@@ -132,10 +138,7 @@ namespace New_MagLink
                     ProcessError(readSocket);
                 }
             }
-            else
-            {
-                //CloseReadSocket(readSocket);
-            }
+            
         }
 
 
@@ -195,14 +198,8 @@ namespace New_MagLink
                 {
                     if (Send(msg))
                     {
-                        //test = msg;
-                       // Message m = new Message(msg);
-
-                        // an accumulator of messages leaving. 
-                        //this.MessagesOut.Add(m);
                         queue.Sent = true;
                         _repository.SaveChanges();
-
 
                     };
                 }
@@ -224,26 +221,25 @@ namespace New_MagLink
                 Queue queue = new Queue();
                 try
                 {
-                    using (StreamReader newMsg = new StreamReader(message))
+                    using (FileStream f = new FileStream(message, FileMode.Open, FileAccess.ReadWrite))
                     {
-
-                        String msg = newMsg.ReadToEnd();
-                            _repository.CreateMhistory(message);
-                        
-                            queue = _repository.CreateQueueRecord(message);
-                       
-                        if (Send(msg))
+                        using (StreamReader newMsg = new StreamReader(f))
                         {
-                            //test = msg;
-                           // Message m = new Message(msg);
-                            // an accumulator of messages leaving. 
-                            //this.MessagesOut.Add(m);
-                            queue.Sent = true;
-                            _repository.SaveChanges();
 
-                        }; 
-                   }
+                            String msg = newMsg.ReadToEnd();
+                            _repository.CreateMhistory(msg);
 
+                            queue = _repository.CreateQueueRecord(msg);
+
+                            if (Send(msg))
+                            {
+                               queue.Sent = true;
+                                _repository.SaveChanges();
+
+                            }
+                            
+                        }
+                    }
 
                 }
                 catch (Exception ex)
@@ -254,7 +250,12 @@ namespace New_MagLink
                 
             }
 
+        }
 
+
+
+        public void fileWatcherStart()
+        {
 
             String[] filters = { "*.txt", "*.hl7" };
             List<FileSystemWatcher> watchers = new List<FileSystemWatcher>();
@@ -274,7 +275,6 @@ namespace New_MagLink
                 watchers.Add(w);
             }
 
-
         }
 
 
@@ -283,7 +283,8 @@ namespace New_MagLink
         {
             try
             {
-                connectionsocket.Close();
+                connectionsocket.Disconnect(true);
+                connected = false;
             }
             catch
             {
@@ -294,6 +295,7 @@ namespace New_MagLink
         public override void Stop()
         {
             connectionsocket.Close();
+            connected = false;
            // mutex.ReleaseMutex();
         }
 
@@ -303,67 +305,110 @@ namespace New_MagLink
         public bool Connect(string iporname, int port)
         {
             exceptionthrown = false;
-
-            if (CreateSocket(iporname, port))
+            
+            if (!connected )
             {
-                try
-                {
-                    var connectendpoint = CreateIPEndPoint(iporname, port);
-                    connectionsocket.Connect(connectionendpoint);
 
-                    item.UserToken = new OSUserToken(this.connectionsocket, Convert.ToInt32(Settings._instance.BufferSize), this._repository);
-                    ErrorHandler._ErrorHandler.LogInfo("Connected");
-                    return true;
+                if (CreateSocket(iporname, port))
+                {
+                    try
+                    {
+                        var connectendpoint = CreateIPEndPoint(iporname, port);
+                        connectionsocket.Connect(connectionendpoint);
+                        item.UserToken = new OSUserToken(this.connectionsocket,
+                        Convert.ToInt32(Settings._instance.BufferSize), this._repository);
+                       
+                        ErrorHandler._ErrorHandler.LogInfo("Connected");
+                        connected = true;
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+
+                        ErrorHandler._ErrorHandler.LogError(ex, "There is an error connecting");
+                        exceptionthrown = true;
+                        //lasterror = ex.ToString();
+                        connected = false;
+                        return false;
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
 
-                    ErrorHandler._ErrorHandler.LogError(ex, "There is an error connecting");
-                    exceptionthrown = true;
-                    //lasterror = ex.ToString();
+                    ErrorHandler._ErrorHandler.LogInfo("Can't connect to " + iporname + " on port " + port);
+                    connected = false;
                     return false;
                 }
-            }
-            else
-            {
 
-                ErrorHandler._ErrorHandler.LogInfo("Can't connect to "+iporname+ " on port "+ port);
-                return false;
-            }
+            } 
+
+            return true;
         }
 
-       public void _timerClient_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        public void _timerClient_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             _timerClient.Stop();
             // do stuff for the client timer
-            CheckQueue();
-           var registry = _repository.GetRegistry();
-           registry.HeartBeat = System.DateTime.Now;
-            registry.Status = "ON";
-           _repository.CreateRegistry(registry);
+            Console.WriteLine("here in the queue timer");
+           try
+           {
+               if (connected)
+               {
+                   //_timerClientConnecTimer.Stop();
+                   SendMessages();
+                   CheckQueue();
+                   var registry = _repository.GetRegistry();
+                   registry.HeartBeat = System.DateTime.Now;
+                   registry.Status = "ON";
+                   _repository.CreateRegistry(registry);
+
+               }
+               else
+               {
+                   Connect(Settings._instance.RemoteIPAddress, Convert.ToInt32(Settings._instance.RemotePort));
+               }
+           }
+           catch (Exception ex)
+           {
+                // do something here
+               
+           }
            _timerClient.Start();
- 
+          // _timerClientConnecTimer.Start();
         }
 
-       private void CheckQueue()
+       public void _timerClientConnecTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+           
+       }
+
+        private void CheckQueue()
        {
-           IEnumerable<Queue> queues = _repository.QueueToSend();
-           if (queues.Any())
-           {
-               foreach (var queue in queues)
-               {
-                   if (Send(queue.Message))
-                   {
-                       queue.Sent = true;
-                       _repository.SaveChanges();
+            IEnumerable<Queue> queues = _repository.QueueToSend();
+            if (queues.Count() > 0)
+            {
+                foreach (var queue in queues)
+                {
+                    try
+                    {
+                        if (Send(queue.Message))
+                        {
+                            queue.Sent = true;
+                            _repository.SaveChanges();
+                            connected = true;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                         Connect(Settings._instance.RemoteIPAddress,
+                            Convert.ToInt32(Settings._instance.RemotePort));
+                         connected = false;
+                        throw;
+                    }
 
-                   }
-    
-               }
-               
+                }
 
-           }
-
+            }
 
        }
     }

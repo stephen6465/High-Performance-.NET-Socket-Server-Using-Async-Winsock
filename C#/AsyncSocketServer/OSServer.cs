@@ -17,7 +17,7 @@ namespace New_MagLink
     class OSServer : OSCore
     {
         // We limit this server client connections for test purposes
-        protected const int DEFAULT_MAX_CONNECTIONS = 100;
+        protected const int DEFAULT_MAX_CONNECTIONS = 1000;
          IEFMagLinkRepository _repository;
         // We use a Mutex to block the listener thread so that limited client connections are active
         // on the server.  If you stop the server, the mutex is released. 
@@ -58,8 +58,7 @@ namespace New_MagLink
                 item.SetBuffer(new Byte[Convert.ToInt32(Settings._instance.BufferSize)], 0, Convert.ToInt32(Settings._instance.BufferSize));
                 socketpool.Push(item);
             }
-            // Create the Mllp Helper object here
-           // HL7._instance;
+            
         }
 
 
