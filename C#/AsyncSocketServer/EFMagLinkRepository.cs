@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Net.Sockets;
 
@@ -9,7 +10,7 @@ namespace New_MagLink
 {
     class EFMagLinkRepository: IEFMagLinkRepository
     {
-        private MagLink_engineEntities _magDb = new MagLink_engineEntities();
+       // private MagLink_engineEntities _magDb = new MagLink_engineEntities();
 
 
 
@@ -21,7 +22,7 @@ namespace New_MagLink
             {
                 //using (_magDb)
                 //{
-                    _magDb = new MagLink_engineEntities();
+                var    _magDb = new MagLink_engineEntities();
                     return _magDb.AckMessages.ToList();   
                 //}
             }
@@ -36,8 +37,8 @@ namespace New_MagLink
         public void Dispose()
         {
 
-            _magDb.Dispose();
-            
+            this.Dispose();
+
         }
 
         public Registry GetRegistry()
@@ -49,8 +50,9 @@ namespace New_MagLink
             {
                 //using (_magDb)
                 //{
-                    _magDb = new MagLink_engineEntities();
-                    return _magDb.Registries.FirstOrDefault(p => p.ID == 1);   
+                  var   _magDb = new MagLink_engineEntities();
+                    return _magDb.Registries.FirstOrDefault(p => p.ID == 1); 
+                    
                 //}
             }
             catch (Exception ex)
@@ -69,8 +71,10 @@ namespace New_MagLink
             {
                 //using (_magDb)
                 //{
-                    _magDb = new MagLink_engineEntities();
+                 var   _magDb = new MagLink_engineEntities();
+                    _magDb.Entry(registry).State = registry.ID == 0 ? EntityState.Added : EntityState.Modified;
                     _magDb.SaveChanges();
+                   // _magDb.Dispose();
                 //}
             }
             catch (Exception ex)
@@ -80,21 +84,44 @@ namespace New_MagLink
             
         }
 
-        public void SaveChanges()
+        public void SaveChangesQueue(Queue queue)
         {
             try
             {
                 //using (_magDb)
                 //{
-                    _magDb = new MagLink_engineEntities();
+                  var   _magDb = new MagLink_engineEntities();
+                    //_magDb.Queues.Attach(queue);
+                    _magDb.Entry(queue).State = queue.ID == 0 ? EntityState.Added : EntityState.Modified;
                     _magDb.SaveChanges();
+                   // _magDb.Dispose();
                 //}
             }
             catch (Exception ex)
             {
-                ErrorHandler._ErrorHandler.LogError(ex, "Error saving changes general call");
+                ErrorHandler._ErrorHandler.LogError(ex, "Error saving changes to queue call");
             }
         }
+
+        public void SaveChangesMhistory(Message_History mhistory)
+    {
+           try
+            {
+                //using (_magDb)
+                //{
+                  var  _magDb = new MagLink_engineEntities();
+                    //_magDb.Message_History.Attach(mhistory);
+                _magDb.Entry(mhistory).State = mhistory.mhistID == 0 ? EntityState.Added : EntityState.Modified;
+                    _magDb.SaveChanges();
+                    //_magDb.Dispose();
+                //}
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler._ErrorHandler.LogError(ex, "Error saving changes to queue call");
+            }
+        }
+
         public void CreateMhistory(String message)
         {
             try
@@ -109,10 +136,10 @@ namespace New_MagLink
 
                 //using (_magDb)
                 //{
-                    _magDb = new MagLink_engineEntities();
+              var      _magDb = new MagLink_engineEntities();
                     _magDb.Message_History.Add(history);
                     _magDb.SaveChanges();
-   
+                  //  _magDb.Dispose();
                 //}
             }
             catch (Exception ex)
@@ -127,15 +154,28 @@ namespace New_MagLink
         {
             try
             {
+                var _magDb = new MagLink_engineEntities();
                 Queue queue = _magDb.Queues.FirstOrDefault(q => q.MessageID.ToUpper().Trim() == messageID.ToUpper().Trim() && (q.Garbage == false || q.Garbage == null));
                 if (queue != null)
                 {
                     //using (_magDb)
                     //{
-                        _magDb = new MagLink_engineEntities();
+                    
+                     
                         queue.Sent = true;
                         queue.Garbage = true;
+                        _magDb.Entry(queue).State = queue.ID == 0 ? EntityState.Added : EntityState.Modified;
+                    try
+                    {
                         _magDb.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorHandler._ErrorHandler.LogError(ex, "Error saving data in the queue table");
+                        
+                    }
+                        
+                    //_magDb.Dispose();
     
                     //}
                     
@@ -159,7 +199,7 @@ namespace New_MagLink
 
                 //using (_magDb)
                 //{
-                    //_magDb = new MagLink_engineEntities();
+                    var _magDb = new MagLink_engineEntities();
                     return _magDb.Queues.Where(q => q.Garbage == false).ToList();     
                 //}
 
@@ -173,6 +213,16 @@ namespace New_MagLink
             return queues;
         }
 
+        public void ClearQueue()
+        {
+
+            var _magDb = new MagLink_engineEntities();
+            var queueRecords = _magDb.Queues.Where(q => q.Garbage == true).ToList();
+            _magDb.Queues.RemoveRange(queueRecords);
+            _magDb.SaveChanges();
+
+
+        }
 
         public Queue CreateQueueRecord(String message)
         {
@@ -190,7 +240,7 @@ namespace New_MagLink
 
                 //using (_magDb)
                 //{
-                    _magDb = new MagLink_engineEntities();
+                   var _magDb = new MagLink_engineEntities();
                     _magDb.Queues.Add(queue);
                     _magDb.SaveChanges();
    

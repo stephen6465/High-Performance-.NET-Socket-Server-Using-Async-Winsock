@@ -10,8 +10,11 @@ namespace New_MagLink
         void CreateRegistry(Registry registry);
         void CreateMhistory(String message);
         Queue CreateQueueRecord(String message);
-        void SaveChanges();
+        void SaveChangesQueue(Queue queue);
+        void SaveChangesMhistory(Message_History mhistory);
         void ProcessQueue(String messageID);
         IEnumerable<Queue> QueueToSend();
+
+        void ClearQueue();
     }
 }

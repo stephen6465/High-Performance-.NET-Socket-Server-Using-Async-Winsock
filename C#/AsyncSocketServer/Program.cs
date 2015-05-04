@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Net.Configuration;
 using System.Text;
 using System.Net;
@@ -105,8 +106,9 @@ namespace New_MagLink
                     ErrorHandler._ErrorHandler.LogInfo(string.Format("Client started successfully.\nRunning on Port:{0} and IP:{1}", Settings._instance.RemoteIPAddress, Settings._instance.RemotePort));
                     //connected = true;
                     clientstarted = true;
-
+                    os_client.StarStopTimer("Stop");
                    os_client.SendMessages();
+                   os_client.StarStopTimer("START");
 
                  }
             }

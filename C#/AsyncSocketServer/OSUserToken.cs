@@ -151,11 +151,9 @@ namespace New_MagLink
 
             //TODO Use message received to perform a specific operation.
 
-
+            // build the end of message string below to check recieved against it
             string content2 = new String((char)HL7.MLLP_FIRST_END_CHARACTER, 1);
             content2 = content2 + new String((char)HL7.MLLP_LAST_END_CHARACTER, 1);
-
-
 
             // get the message up to the eof characters
             // and remove the message from the string builder
