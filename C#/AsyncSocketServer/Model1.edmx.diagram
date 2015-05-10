@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="MagLink_engineModel.Registry" Width="1.5" PointX="6.375" PointY="0.75" />
         <EntityTypeShape EntityType="MagLink_engineModel.AckMessage" Width="1.5" PointX="6.375" PointY="3.75" />
         <EntityTypeShape EntityType="MagLink_engineModel.Message_History" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MagLink_engineModel.AckMessRecieved" Width="1.5" PointX="3.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

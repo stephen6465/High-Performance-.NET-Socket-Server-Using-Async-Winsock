@@ -84,6 +84,28 @@ namespace New_MagLink
             
         }
 
+        public void CreateAckRecord(String m)
+        {
+            //  _magDb.Registries.      //Add(registry);
+            try
+            {
+                var message = new Message(m);
+
+                AckMessRecieved ackMess = new AckMessRecieved();
+                ackMess.Message = m;
+                ackMess.MessageID = message.getElement("MSH", 9);
+                ackMess.SentDateTime = System.DateTime.Now;
+                var _magDb = new MagLink_engineEntities();
+                _magDb.Entry(ackMess).State = ackMess.ID == 0 ? EntityState.Added : EntityState.Modified;
+                _magDb.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler._ErrorHandler.LogError(ex, "Error saving changes to ackMessages Received");
+            }
+
+        }
+
         public void SaveChangesQueue(Queue queue)
         {
             try
@@ -174,12 +196,19 @@ namespace New_MagLink
                         ErrorHandler._ErrorHandler.LogError(ex, "Error saving data in the queue table");
                         
                     }
-                        
-                    //_magDb.Dispose();
-    
-                    //}
-                    
+
                 }
+
+                //AckMessRecieved ackMess =
+                //          _magDb.AckMessRecieveds.FirstOrDefault(
+                //              a => a.MessageID.Trim().ToUpper() == messageID.Trim().ToUpper());
+
+                //if (ackMess != null)
+                //{
+
+
+                //}
+            
             }
             catch (Exception ex)
             {
@@ -188,6 +217,15 @@ namespace New_MagLink
             }
             
 
+        }
+
+        public Queue GetQueue(Int64 ID)
+        {
+
+            var _magDb = new MagLink_engineEntities();
+            Queue queue = _magDb.Queues.FirstOrDefault(q => q.ID == ID);
+
+            return queue;
         }
 
         public IEnumerable<Queue> QueueToSend()

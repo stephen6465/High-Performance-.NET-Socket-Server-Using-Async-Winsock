@@ -6,6 +6,7 @@
     <EntitySet Name="Registries" EntityType="MagLink_engineModel.Registry" />
     <EntitySet Name="AckMessages" EntityType="MagLink_engineModel.AckMessage" />
     <EntitySet Name="Message_History" EntityType="MagLink_engineModel.Message_History" />
+    <EntitySet Name="AckMessRecieveds" EntityType="MagLink_engineModel.AckMessRecieved" />
   </EntityContainer>
   <EntityType Name="Pref">
     <Key>
@@ -63,5 +64,19 @@
     <Property Name="PatID" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
     <Property Name="PatName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
     <Property Name="Message" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="AckMessRecieved">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="MessageID" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="PatientMRN" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="Sent" Type="Boolean" />
+    <Property Name="SentDateTime" Type="DateTime" />
+    <Property Name="Garbage" Type="Boolean" />
+    <Property Name="Count" Type="Int64" />
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
   </EntityType>
 </Schema>

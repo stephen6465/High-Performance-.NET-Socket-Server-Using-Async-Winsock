@@ -109,6 +109,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="AckMessages.cs" />
+    <Compile Include="AckMessRecieved.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EFMagLinkRepository.cs" />
     <Compile Include="ErrorHandler.cs" />
     <Compile Include="HL7.cs" />

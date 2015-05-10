@@ -30,5 +30,6 @@ namespace New_MagLink
         public virtual DbSet<Registry> Registries { get; set; }
         public virtual DbSet<AckMessage> AckMessages { get; set; }
         public virtual DbSet<Message_History> Message_History { get; set; }
+        public virtual DbSet<AckMessRecieved> AckMessRecieveds { get; set; }
     }
 }

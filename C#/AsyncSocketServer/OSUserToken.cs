@@ -3,6 +3,7 @@ using System.IO;
 using System.Net.Sockets;
 using System.Text;
 //using System.Byte[];
+using System.Threading.Tasks;
 using AsyncSocketServer;
 
 
@@ -144,7 +145,7 @@ namespace New_MagLink
               }
         }
 
-        public void ProcessClientData(SocketAsyncEventArgs args)
+        public void  ProcessClientData(SocketAsyncEventArgs args)
         {
             // Get the last message received from the client, which has been stored in the stringbuilder.
             String received = stringbuilder.ToString();
@@ -173,7 +174,7 @@ namespace New_MagLink
                     int temp2 = received.IndexOf(content2);
                     totalbytecount = totalbytecount - received.Length;
                     received = received.Substring(1, temp2);
-                     _repository.CreateMhistory(received);
+                   //  _repository.CreateMhistory(received);
                     
                     stringbuilder.Remove(0, temp2);
                     totalbytecount = 0;
@@ -183,7 +184,9 @@ namespace New_MagLink
 
                     Message m = new Message(received);
                     String messageID = m.getElement("MSH", 9);
-                    _repository.ProcessQueue(messageID);
+                    
+                     //   _repository.CreateAckRecord(received);
+                   // _repository.ProcessQueue(messageID);
 
                    // AckMessages ack = new AckMessages(received, _repository);
                     //Console.WriteLine(ack.ack);
@@ -192,7 +195,7 @@ namespace New_MagLink
                     //OwnerSocket.Send(args.Buffer);
 
                 }
-
+                
             }
 
             // All the data has been read from the 
@@ -255,7 +258,8 @@ namespace New_MagLink
             if (content.IndexOf(content2) > -1)
             {
 
-                this.ProcessClientData(readSocket);
+                 this.ProcessClientData(readSocket);
+               //task.Wait();
 
             }
 

@@ -107,7 +107,9 @@ namespace New_MagLink
                     //connected = true;
                     clientstarted = true;
                     os_client.StarStopTimer("Stop");
-                   os_client.SendMessages();
+                   
+                  
+                    os_client.SendMessages();
                    os_client.StarStopTimer("START");
 
                  }

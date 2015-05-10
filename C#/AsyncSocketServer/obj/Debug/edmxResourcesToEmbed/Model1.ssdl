@@ -12,6 +12,20 @@
     <Property Name="ContentOut" Type="varchar" MaxLength="2147483647" />
     <Property Name="Order" Type="integer" />
   </EntityType>
+  <EntityType Name="AckMessRecieved">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="MessageID" Type="varchar" MaxLength="2147483647" />
+    <Property Name="Message" Type="varchar" MaxLength="2147483647" />
+    <Property Name="Type" Type="varchar" MaxLength="2147483647" />
+    <Property Name="PatientMRN" Type="varchar" MaxLength="2147483647" />
+    <Property Name="Sent" Type="bit" />
+    <Property Name="SentDateTime" Type="datetime" />
+    <Property Name="Garbage" Type="bit" />
+    <Property Name="Count" Type="integer" />
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
   <EntityType Name="Message_History">
     <Key>
       <PropertyRef Name="mhistID" />
@@ -59,6 +73,7 @@
   </EntityType>
   <EntityContainer Name="MagLink_engineModelStoreContainer">
     <EntitySet Name="AckMessage" EntityType="Self.AckMessage" store:Type="Tables" />
+    <EntitySet Name="AckMessRecieved" EntityType="Self.AckMessRecieved" store:Type="Tables" />
     <EntitySet Name="Message_History" EntityType="Self.Message_History" store:Type="Tables" />
     <EntitySet Name="Pref" EntityType="Self.Pref" store:Type="Tables" />
     <EntitySet Name="Queue" EntityType="Self.Queue" store:Type="Tables" />

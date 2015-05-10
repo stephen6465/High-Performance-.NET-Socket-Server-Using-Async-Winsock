@@ -14,7 +14,9 @@ namespace New_MagLink
         void SaveChangesMhistory(Message_History mhistory);
         void ProcessQueue(String messageID);
         IEnumerable<Queue> QueueToSend();
-
+        void CreateAckRecord(String m);
         void ClearQueue();
+        Queue GetQueue(Int64 ID);
+
     }
 }

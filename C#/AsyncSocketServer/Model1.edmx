@@ -17,6 +17,20 @@
           <Property Name="ContentOut" Type="varchar" MaxLength="2147483647" />
           <Property Name="Order" Type="integer" />
         </EntityType>
+        <EntityType Name="AckMessRecieved">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="MessageID" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Message" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Type" Type="varchar" MaxLength="2147483647" />
+          <Property Name="PatientMRN" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Sent" Type="bit" />
+          <Property Name="SentDateTime" Type="datetime" />
+          <Property Name="Garbage" Type="bit" />
+          <Property Name="Count" Type="integer" />
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="Message_History">
           <Key>
             <PropertyRef Name="mhistID" />
@@ -64,6 +78,7 @@
         </EntityType>
         <EntityContainer Name="MagLink_engineModelStoreContainer">
           <EntitySet Name="AckMessage" EntityType="Self.AckMessage" store:Type="Tables" />
+          <EntitySet Name="AckMessRecieved" EntityType="Self.AckMessRecieved" store:Type="Tables" />
           <EntitySet Name="Message_History" EntityType="Self.Message_History" store:Type="Tables" />
           <EntitySet Name="Pref" EntityType="Self.Pref" store:Type="Tables" />
           <EntitySet Name="Queue" EntityType="Self.Queue" store:Type="Tables" />
@@ -79,6 +94,7 @@
           <EntitySet Name="Registries" EntityType="MagLink_engineModel.Registry" />
           <EntitySet Name="AckMessages" EntityType="MagLink_engineModel.AckMessage" />
           <EntitySet Name="Message_History" EntityType="MagLink_engineModel.Message_History" />
+          <EntitySet Name="AckMessRecieveds" EntityType="MagLink_engineModel.AckMessRecieved" />
         </EntityContainer>
         <EntityType Name="Pref">
           <Key>
@@ -136,6 +152,20 @@
           <Property Name="PatID" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="PatName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="Message" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AckMessRecieved">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="MessageID" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="PatientMRN" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Sent" Type="Boolean" />
+          <Property Name="SentDateTime" Type="DateTime" />
+          <Property Name="Garbage" Type="Boolean" />
+          <Property Name="Count" Type="Int64" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -202,6 +232,21 @@
                 <ScalarProperty Name="mhistID" ColumnName="mhistID" />
                 <ScalarProperty Name="messageid" ColumnName="messageid" />
                 <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AckMessRecieveds">
+            <EntityTypeMapping TypeName="MagLink_engineModel.AckMessRecieved">
+              <MappingFragment StoreEntitySet="AckMessRecieved">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Garbage" ColumnName="Garbage" />
+                <ScalarProperty Name="SentDateTime" ColumnName="SentDateTime" />
+                <ScalarProperty Name="Sent" ColumnName="Sent" />
+                <ScalarProperty Name="PatientMRN" ColumnName="PatientMRN" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
