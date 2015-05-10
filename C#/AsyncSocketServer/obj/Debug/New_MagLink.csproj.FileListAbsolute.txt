@@ -18,3 +18,6 @@ C:\Users\swilson\Documents\Visual Studio 2013\Projects\High Performance .NET Soc
 C:\Users\swilson\Documents\Visual Studio 2013\Projects\High Performance .NET Socket Server Using Async Winsock\C#\AsyncSocketServer\obj\Debug\AsyncSocketServer.exe
 C:\Users\swilson\Documents\Visual Studio 2013\Projects\High Performance .NET Socket Server Using Async Winsock\C#\AsyncSocketServer\obj\Debug\AsyncSocketServer.pdb
 C:\Users\swilson\Documents\Visual Studio 2013\Projects\High Performance .NET Socket Server Using Async Winsock\C#\AsyncSocketServer\obj\Debug\New_MagLink.csprojResolveAssemblyReference.cache
+C:\Users\swilson\Documents\Visual Studio 2013\Projects\High-Performance-.NET-Socket-Server-Using-Async-Winsock\C#\AsyncSocketServer\bin\Debug\AsyncSocketServer.exe.config
+C:\Users\swilson\Documents\Visual Studio 2013\Projects\High-Performance-.NET-Socket-Server-Using-Async-Winsock\C#\AsyncSocketServer\obj\Debug\AsyncSocketServer.exe
+C:\Users\swilson\Documents\Visual Studio 2013\Projects\High-Performance-.NET-Socket-Server-Using-Async-Winsock\C#\AsyncSocketServer\obj\Debug\AsyncSocketServer.pdb
