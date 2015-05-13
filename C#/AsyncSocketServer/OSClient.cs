@@ -68,7 +68,7 @@ namespace New_MagLink
         }
 
         // This method is used to send a message to the server
-        public  async Task<bool> Send(string cmdstring, Queue queue)
+        public  bool Send(string cmdstring, Queue queue)
         {
             cmdstring = HL7.CreateMLLPMessage(cmdstring);
             exceptionthrown = false;
@@ -92,7 +92,7 @@ namespace New_MagLink
                         {
                             connectionsocket.Send(byData);
                             queue.Sent = true;
-                           await _repository.SaveChangesQueueAsync(queue);
+                            _repository.SaveChangesQueue(queue);
                         }
                         catch (Exception ex)
                         {
@@ -180,7 +180,7 @@ namespace New_MagLink
 
         }
 
-        public async Task ProcessClientData(String ackMessage)
+        public void ProcessClientData(String ackMessage)
         {
 
 
@@ -202,12 +202,11 @@ namespace New_MagLink
                 {
                     int temp2 = ackMessage.IndexOf(content2);
                     ackMessage = ackMessage.Substring(1, temp2);
-                    await _repository.CreateMhistoryAsync(ackMessage);
+                    _repository.CreateMhistory(ackMessage);
                     Message m = new Message(ackMessage);
                     String messageID = m.getElement("MSH", 9);
-                    await _repository.CreateAckRecordAsync(ackMessage);
-                    Task.WaitAll();
-                    await _repository.ProcessQueueAsync(messageID);
+                    _repository.CreateAckRecord(ackMessage);
+                    _repository.ProcessQueue(messageID);
 
                 }
 
@@ -216,7 +215,7 @@ namespace New_MagLink
 
 
 
-        public async Task ProcessReceive(SocketAsyncEventArgs readSocket)
+        public void ProcessReceive(SocketAsyncEventArgs readSocket)
         {
             // if BytesTransferred is 0, then the remote end closed the connection
             if (readSocket.BytesTransferred > 0)
@@ -233,7 +232,7 @@ namespace New_MagLink
                         // from all of the previous read requests on this socket
                         if (readsocketRS.Available == 0)
                         {
-                          await token.ProcessClientData(readSocket);
+                            token.ProcessClientData(readSocket);
                         }
 
                         // Start another receive request and immediately check to see if the receive is already complete
@@ -244,7 +243,7 @@ namespace New_MagLink
                         bool IOPending = readsocketRS.ReceiveAsync(readSocket);
                         if (!IOPending)
                         {
-                             ProcessReceive(readSocket);
+                            ProcessReceive(readSocket);
                         }
                         
                     }
@@ -312,7 +311,7 @@ namespace New_MagLink
             }
         }
 
-        public async void myFileWatcher_ChangeDetecter(object sender,
+        public void myFileWatcher_ChangeDetecter(object sender,
         System.IO.FileSystemEventArgs e)
         {
             _timerClient.Stop();
@@ -334,16 +333,12 @@ namespace New_MagLink
                         ErrorHandler._ErrorHandler.LogError(ex, "Error opening file to send messages out bound");
 
                     }
-                  await  _repository.CreateMhistoryAsync(msg);
-                   Task<Queue> q = _repository.CreateQueueRecordAsync(msg);
-                   queue = await q;
-                   q.Wait();
+                    _repository.CreateMhistory(msg);
+                    queue = _repository.CreateQueueRecord(msg);
 
                     try
                     {
-                        Task<bool> testSend=  Send(msg, queue);
-                          bool  testSend2 = await testSend;
-                        if (testSend2)
+                        if (Send(msg, queue))
                         {
                             //queue.Sent = true;
                             // _repository.SaveChangesQueue(queue);
@@ -370,7 +365,7 @@ namespace New_MagLink
             _timerClient.Start();
         }
 
-        public async void SendMessages()
+        public void SendMessages()
         {
 
             foreach (var message in Directory.GetFiles(Settings._instance.OutFolderPath,"*.txt"))
@@ -402,9 +397,8 @@ namespace New_MagLink
                               //  _repository.CreateMhistory(msg);
 
                                // queue = _repository.CreateQueueRecord(msg);
-                                Task<bool> testSend = Send(msg, queue);
-                                bool testSend2 = await testSend;
-                                if (testSend2)
+
+                                if (Send(msg, queue))
                                 {
                                     //queue = _repository.GetQueue(queue.ID);
 
@@ -573,7 +567,7 @@ namespace New_MagLink
                             exceptionthrown = true;
                             //lasterror = ex.ToString();
                             connected = false;
-                           return false;
+                            return false;
                         }
                     }
                     else
@@ -636,7 +630,7 @@ namespace New_MagLink
             NoDataOfRequestedType = 11004
         }
 
-        public async void _timerClient_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        public void _timerClient_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             _timerClient.Stop();
             // do stuff for the client timer
@@ -650,13 +644,11 @@ namespace New_MagLink
                    SendMessages();
                   // CheckQueue();
                    
-                   Task<Registry> registry1 =  _repository.GetRegistryAsync();
-                   Registry registry = await registry1;
-                   registry1.Wait();
+                   var registry = _repository.GetRegistry();
                    registry.HeartBeat = System.DateTime.Now;
                    registry.Status = "ON";
                    registry.ErrorState = "";
-                   await _repository.CreateRegistryAsync(registry);
+                   _repository.CreateRegistry(registry);
 
                }
                else
@@ -674,9 +666,9 @@ namespace New_MagLink
           // _timerClientConnecTimer.Start();
         }
 
-        private async Task ClearOldQueue()
+        private void ClearOldQueue()
         {
-            await _repository.ClearQueueAsync();
+            _repository.ClearQueue();
         }
 
         public void _timerClientConnecTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -684,24 +676,17 @@ namespace New_MagLink
            
        }
 
-        private async Task CheckQueueAsycn()
+        private void CheckQueue()
        {
-            
-  
-   
-          Task<IEnumerable<Queue>> queues1 =  _repository.QueueToSendAsync();
-          IEnumerable<Queue> queues = await queues1;
-          queues1.Wait();
-
+            IEnumerable<Queue> queues = _repository.QueueToSend();
             if (queues.Count() > 0)
             {
                 foreach (var queue in queues)
                 {
                     try
                     {
-                        Task<bool> testSend = Send(queue.Message, queue);
-                        bool testSend2 = await testSend;
-                        if (testSend2)
+
+                        if (Send(queue.Message, queue))
                         {
                             //queue.Sent = true;
                             //_repository.SaveChangesQueue(queue);

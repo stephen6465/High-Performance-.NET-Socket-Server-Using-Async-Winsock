@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace New_MagLink
 {
@@ -13,27 +12,17 @@ namespace New_MagLink
         IEFMagLinkRepository _repository;
         public AckMessages(String message , IEFMagLinkRepository repository)
         {
-            _repository = repository;
-            this.setAck(message);
-            //string ack1 = await this.makeAck(message);
-                           
+            _repository = repository; 
+            this.ack = this.makeAck(message);
         }
 
-        public async void setAck(String message)
-        {
-            //String t =  
-            this.ack = await makeAck(message);
-        }
-
-        public async Task<String> makeAck(String message)
+        public String makeAck(String message)
         {
 
             DateTime date = DateTime.Now;
             string format = "yyyyMMddHHmmss";
             StringBuilder hl7DateStr = new StringBuilder(date.ToString(format));
-            var AckSegments1 = _repository.GetAckMessageAsync();
-            var AckSegments = await AckSegments1;
-
+            var AckSegments = _repository.GetAckMessage();
             _messageId = getMessageId(message, 9);
             StringBuilder ackSegmentString = new StringBuilder();
 

@@ -7,7 +7,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.IO;
-using System.Threading.Tasks;
 using AsyncSocketServer;
 
 namespace New_MagLink
@@ -44,18 +43,14 @@ namespace New_MagLink
             String ComPath = path + setFile;
            
             var registry = new Registry();
-            Task<Registry> r = _repository.GetRegistryAsync();
-            r.Wait();
-            registry = r.Result;
-            
+            registry = _repository.GetRegistry();
+
             registry.Status = "ON";
             registry.ErrorMessage = "";
             registry.ErrorState = "";
             registry.HeartBeat = System.DateTime.Now;
-            
-            Task t = _repository.CreateRegistryAsync(registry);
-            t.Wait();
-
+            _repository.CreateRegistry(registry);
+           
             // set timer to mantain the heartBeat now
 
             _timerHeartBeat.Elapsed += new System.Timers.ElapsedEventHandler(_timer_Elapsed);
@@ -135,8 +130,7 @@ namespace New_MagLink
                                 {
                                     registry.Status = "OFF";
                                     registry.HeartBeat = System.DateTime.Now;
-                                 Task t2 = _repository.CreateRegistryAsync(registry);
-                                 t2.Wait();
+                                    _repository.CreateRegistry(registry);
                                     os_server.Stop();
                                 }
 
@@ -145,9 +139,7 @@ namespace New_MagLink
                                     os_client.DisConnect();
                                     registry.Status = "OFF";
                                     registry.HeartBeat = System.DateTime.Now;
-                                    Task t3 = _repository.CreateRegistryAsync(registry);
-                                    t3.Wait();
-
+                                    _repository.CreateRegistry(registry);
                                 }
                                 
                                 shutdown = true;
@@ -162,15 +154,14 @@ namespace New_MagLink
 
         }
 
-        static async void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        static void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             _timerHeartBeat.Stop();
             //Console.WriteLine("Timer 1 Hit...");
-            var registry = await _repository.GetRegistryAsync();
-            Task.WaitAll();
+            var registry = _repository.GetRegistry();
             registry.HeartBeat = System.DateTime.Now;
             registry.Status = "ON";
-            await _repository.CreateRegistryAsync(registry);
+            _repository.CreateRegistry(registry);
             _timerHeartBeat.Start();
         }
 

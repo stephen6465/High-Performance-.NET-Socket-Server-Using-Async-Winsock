@@ -5,7 +5,6 @@ using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Net.Sockets;
-using System.Threading.Tasks;
 
 namespace New_MagLink
 {
@@ -15,7 +14,7 @@ namespace New_MagLink
 
 
 
-        public async Task<IEnumerable<AckMessage>> GetAckMessageAsync()
+        public IEnumerable<AckMessage> GetAckMessage()
         {
             IEnumerable<AckMessage> ackMessages = new List<AckMessage>();
 
@@ -24,7 +23,7 @@ namespace New_MagLink
                 //using (_magDb)
                 //{
                 var    _magDb = new MagLink_engineEntities();
-                    return await _magDb.AckMessages.ToListAsync();   
+                    return _magDb.AckMessages.ToList();   
                 //}
             }
             catch (Exception ex)
@@ -42,7 +41,7 @@ namespace New_MagLink
 
         }
 
-        public async Task<Registry> GetRegistryAsync()
+        public Registry GetRegistry()
         {
 
             Registry registry = new Registry();
@@ -52,7 +51,7 @@ namespace New_MagLink
                 //using (_magDb)
                 //{
                   var   _magDb = new MagLink_engineEntities();
-                    return await _magDb.Registries.FirstOrDefaultAsync(p => p.ID == 1); 
+                    return _magDb.Registries.FirstOrDefault(p => p.ID == 1); 
                     
                 //}
             }
@@ -65,7 +64,7 @@ namespace New_MagLink
             return registry;
         }
 
-        public async Task CreateRegistryAsync(Registry registry)
+        public void CreateRegistry(Registry registry)
         {
           //  _magDb.Registries.      //Add(registry);
             try
@@ -74,7 +73,7 @@ namespace New_MagLink
                 //{
                  var   _magDb = new MagLink_engineEntities();
                     _magDb.Entry(registry).State = registry.ID == 0 ? EntityState.Added : EntityState.Modified;
-                  await  _magDb.SaveChangesAsync();
+                    _magDb.SaveChanges();
                    // _magDb.Dispose();
                 //}
             }
@@ -85,7 +84,7 @@ namespace New_MagLink
             
         }
 
-        public async Task CreateAckRecordAsync(String m)
+        public void CreateAckRecord(String m)
         {
             //  _magDb.Registries.      //Add(registry);
             try
@@ -98,7 +97,7 @@ namespace New_MagLink
                 ackMess.SentDateTime = System.DateTime.Now;
                 var _magDb = new MagLink_engineEntities();
                 _magDb.Entry(ackMess).State = ackMess.ID == 0 ? EntityState.Added : EntityState.Modified;
-                await _magDb.SaveChangesAsync();
+                _magDb.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -107,7 +106,7 @@ namespace New_MagLink
 
         }
 
-        public async Task SaveChangesQueueAsync(Queue queue)
+        public void SaveChangesQueue(Queue queue)
         {
             try
             {
@@ -116,7 +115,7 @@ namespace New_MagLink
                   var   _magDb = new MagLink_engineEntities();
                     //_magDb.Queues.Attach(queue);
                     _magDb.Entry(queue).State = queue.ID == 0 ? EntityState.Added : EntityState.Modified;
-                    await _magDb.SaveChangesAsync();
+                    _magDb.SaveChanges();
                    // _magDb.Dispose();
                 //}
             }
@@ -126,7 +125,7 @@ namespace New_MagLink
             }
         }
 
-        public async Task SaveChangesMhistoryAsync(Message_History mhistory)
+        public void SaveChangesMhistory(Message_History mhistory)
     {
            try
             {
@@ -135,7 +134,7 @@ namespace New_MagLink
                   var  _magDb = new MagLink_engineEntities();
                     //_magDb.Message_History.Attach(mhistory);
                 _magDb.Entry(mhistory).State = mhistory.mhistID == 0 ? EntityState.Added : EntityState.Modified;
-                 await  _magDb.SaveChangesAsync();
+                    _magDb.SaveChanges();
                     //_magDb.Dispose();
                 //}
             }
@@ -145,7 +144,7 @@ namespace New_MagLink
             }
         }
 
-        public async Task CreateMhistoryAsync(String message)
+        public void CreateMhistory(String message)
         {
             try
             {
@@ -161,7 +160,7 @@ namespace New_MagLink
                 //{
               var      _magDb = new MagLink_engineEntities();
                     _magDb.Message_History.Add(history);
-                    await _magDb.SaveChangesAsync();
+                    _magDb.SaveChanges();
                   //  _magDb.Dispose();
                 //}
             }
@@ -173,7 +172,7 @@ namespace New_MagLink
             
         }
 
-        public async Task ProcessQueueAsync(String messageID)
+        public void ProcessQueue(String messageID)
         {
             try
             {
@@ -190,7 +189,7 @@ namespace New_MagLink
                         _magDb.Entry(queue).State = queue.ID == 0 ? EntityState.Added : EntityState.Modified;
                     try
                     {
-                      await  _magDb.SaveChangesAsync();
+                        _magDb.SaveChanges();
                     }
                     catch (Exception ex)
                     {
@@ -220,16 +219,16 @@ namespace New_MagLink
 
         }
 
-        public async Task<Queue> GetQueueAsync(Int64 ID)
+        public Queue GetQueue(Int64 ID)
         {
-            Queue queue;
-            var _magDb = new MagLink_engineEntities();
-            return queue = await _magDb.Queues.FirstOrDefaultAsync(q => q.ID == ID);
 
-            //return queue;
+            var _magDb = new MagLink_engineEntities();
+            Queue queue = _magDb.Queues.FirstOrDefault(q => q.ID == ID);
+
+            return queue;
         }
 
-        public async Task<IEnumerable<Queue>> QueueToSendAsync()
+        public IEnumerable<Queue> QueueToSend()
         {
             IEnumerable<Queue> queues = new List<Queue>();
             try
@@ -239,7 +238,7 @@ namespace New_MagLink
                 //using (_magDb)
                 //{
                     var _magDb = new MagLink_engineEntities();
-                    return await _magDb.Queues.Where(q => q.Garbage == false).ToListAsync();     
+                    return _magDb.Queues.Where(q => q.Garbage == false).ToList();     
                 //}
 
             }
@@ -252,18 +251,18 @@ namespace New_MagLink
             return queues;
         }
 
-        public async Task ClearQueueAsync()
+        public void ClearQueue()
         {
 
             var _magDb = new MagLink_engineEntities();
             var queueRecords = _magDb.Queues.Where(q => q.Garbage == true).ToList();
             _magDb.Queues.RemoveRange(queueRecords);
-            await _magDb.SaveChangesAsync();
+            _magDb.SaveChanges();
 
 
         }
 
-        public async Task<Queue> CreateQueueRecordAsync(String message)
+        public Queue CreateQueueRecord(String message)
         {
             Queue queue = new Queue();
 
@@ -281,7 +280,7 @@ namespace New_MagLink
                 //{
                    var _magDb = new MagLink_engineEntities();
                     _magDb.Queues.Add(queue);
-                    await _magDb.SaveChangesAsync();
+                    _magDb.SaveChanges();
    
                 //}
             }

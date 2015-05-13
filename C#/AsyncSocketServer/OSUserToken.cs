@@ -52,7 +52,7 @@ namespace New_MagLink
 
         // Do something with the received data, then reset the token for use by another connection.
         // This is called when all of the data has been received for a read socket.
-        public async void ProcessData(SocketAsyncEventArgs args)
+        public void ProcessData(SocketAsyncEventArgs args)
         {
             // Get the last message received from the client, which has been stored in the stringbuilder.
             String received = stringbuilder.ToString();
@@ -87,8 +87,7 @@ namespace New_MagLink
                     totalbytecount = 0;
                     stringbuilder.Length = 0;
                    // Console.WriteLine("Received: \"{0}\". The server has read {1} bytes. {2} buffer {3}", received,received.Length, temp2, stringbuilder.Capacity);
-                  await _repository.CreateMhistoryAsync(received);
-
+                    _repository.CreateMhistory(received);
 
                     Message m = new Message(received);
                     //TODO: Load up a send buffer to send an ack back to the calling client
@@ -132,13 +131,13 @@ namespace New_MagLink
                             Byte[] sendBuffer = Encoding.ASCII.GetBytes(ack.ack);
                             args.SetBuffer(sendBuffer, 0, sendBuffer.Length);
                             OwnerSocket.Send(args.Buffer);
-                            await _repository.CreateMhistoryAsync(ack.ack);
+                            _repository.CreateMhistory(ack.ack);
                             
                         }
                     }
                     else
                     {
-                        await _repository.CreateQueueRecordAsync(received);
+                        _repository.CreateQueueRecord(received);
                         ErrorHandler._ErrorHandler.LogInfo("There is an error creating the file: "+ received);                       
 
                     }
@@ -146,7 +145,7 @@ namespace New_MagLink
               }
         }
 
-        public async Task  ProcessClientData(SocketAsyncEventArgs args)
+        public void  ProcessClientData(SocketAsyncEventArgs args)
         {
             // Get the last message received from the client, which has been stored in the stringbuilder.
             String received = stringbuilder.ToString();
@@ -175,7 +174,7 @@ namespace New_MagLink
                     int temp2 = received.IndexOf(content2);
                     totalbytecount = totalbytecount - received.Length;
                     received = received.Substring(1, temp2);
-                   await  _repository.CreateMhistoryAsync(received);
+                   //  _repository.CreateMhistory(received);
                     
                     stringbuilder.Remove(0, temp2);
                     totalbytecount = 0;
@@ -186,9 +185,8 @@ namespace New_MagLink
                     Message m = new Message(received);
                     String messageID = m.getElement("MSH", 9);
                     
-                     await _repository.CreateAckRecordAsync(received);
-                     //Task.WaitAll();
-                   await  _repository.ProcessQueueAsync(messageID);
+                     //   _repository.CreateAckRecord(received);
+                   // _repository.ProcessQueue(messageID);
 
                    // AckMessages ack = new AckMessages(received, _repository);
                     //Console.WriteLine(ack.ack);
@@ -235,7 +233,7 @@ namespace New_MagLink
             if (content.IndexOf(content2) > -1)
             {
 
-               this.ProcessData(readSocket);
+                this.ProcessData(readSocket);
 
             }
 
@@ -260,9 +258,9 @@ namespace New_MagLink
             if (content.IndexOf(content2) > -1)
             {
 
-             var t = Task.Run(()=> this.ProcessClientData(readSocket));
+                 this.ProcessClientData(readSocket);
                //task.Wait();
-             t.Wait();
+
             }
 
             return true;

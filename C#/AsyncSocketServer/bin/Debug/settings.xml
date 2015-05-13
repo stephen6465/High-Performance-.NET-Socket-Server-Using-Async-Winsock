@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <LocalIPAddress>192.168.1.5</LocalIPAddress>
+  <LocalIPAddress>10.207.71.39</LocalIPAddress>
   <LocalPort>3915</LocalPort>
-  <RemoteIPAddress>192.168.1.5</RemoteIPAddress>
+  <RemoteIPAddress>10.207.71.39</RemoteIPAddress>
   <RemotePort>3920</RemotePort>
   <NumConnect>100</NumConnect>
   <OutFolderPath>C:\test\outfolder\</OutFolderPath>
-  <Type>Client</Type>
+  <Type>client</Type>
   <InFolderPath>C:\test\outfolder\</InFolderPath>
   <BufferSize>1500</BufferSize>
 </Settings>

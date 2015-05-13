@@ -42,18 +42,14 @@ namespace New_MagLink
                 this.LogInfo("Error occured accessing error txt file");
             }
             //this.createLogFile();
-            Registry registry; 
-           Task<Registry> t  = _repository.GetRegistryAsync();
-           
-            t.Wait();
-            registry = t.Result;
+             
+            var registry = _repository.GetRegistry();
 
             registry.HeartBeat = System.DateTime.Now;
             registry.ErrorState = "ERROR";
             registry.Status = "OFF";
             registry.ErrorMessage = message;
-           Task t3 = _repository.CreateRegistryAsync(registry);
-           t3.Wait();
+            _repository.CreateRegistry(registry);
             LogInfo("Shutting down");
            // core.Stop();
         }
@@ -79,19 +75,15 @@ namespace New_MagLink
         
                 
             }
+             
 
+            var registry = _repository.GetRegistry();
 
-            Registry registry;
-            Task<Registry> t = _repository.GetRegistryAsync();
-            t.Wait();
-            registry = t.Result;
-            
             registry.HeartBeat = System.DateTime.Now;
             registry.ErrorState = "ERROR";
             registry.Status = "OFF";
             registry.ErrorMessage = message;
-           Task t2 = _repository.CreateRegistryAsync(registry);
-            
+            _repository.CreateRegistry(registry);
             this.LogInfo("Shutting down");
             
 
@@ -120,16 +112,13 @@ namespace New_MagLink
     
                 
             }
-            Registry registry;
-            Task<Registry> t = _repository.GetRegistryAsync();
-            t.Wait();
-            registry = t.Result;
-            
+            var registry = _repository.GetRegistry();
+
             registry.HeartBeat = System.DateTime.Now;
             registry.ErrorState = "ERROR";
             registry.Status = "OFF";
             registry.ErrorMessage = message;
-            _repository.CreateRegistryAsync(registry);
+            _repository.CreateRegistry(registry);
             this.LogInfo("Shutting down");
            // core.Stop();
 
@@ -159,17 +148,14 @@ namespace New_MagLink
                 this.LogInfo("Error occured accessing error txt file");
 
             }
-            Registry registry;
-            Task<Registry> t = _repository.GetRegistryAsync();
-            t.Wait();
-            registry = t.Result;
-            
+
+            var registry = _repository.GetRegistry();
             registry.HeartBeat = System.DateTime.Now;
             
             registry.Status = "OFF";
             registry.ErrorMessage = message;
             registry.ErrorState = "ERROR";
-            _repository.CreateRegistryAsync(registry);
+            _repository.CreateRegistry(registry);
 
         }
 
